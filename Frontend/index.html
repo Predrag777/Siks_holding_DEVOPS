@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>SS</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+
+    <ul>
+        <li><a href="#" id="show-all">Press to show ships</a></li>
+        <li><form>
+            <input type="text" name="text" id="text">
+            <button id="sbm">Submit</button>
+        </form></li>
+    </ul>
+    <div id="show-info">
+        Display ships
+    </div>
+
+</body>
+<script>
+    document.getElementById("show-all").addEventListener("click", (e)=>{
+        e.preventDefault()
+        fetch("/api")
+            .then(response=>response.json())
+            .then(data=>{
+                var ships=JSON.parse(data.body)
+                for(let i=0;i<ships.length;i++){
+                    text+=`<div>${ships[i].ship_name}</div>`
+                    console.log(ships[i].ship_name)
+                }
+                document.getElementById("show-info").innerHTML=text
+
+       
+        })
+     
+    })
+
+    document.getElementById("sbm").addEventListener("click", (e)=>{
+        e.preventDefault()
+        var ship_name=document.getElementById("text").value
+        fetch(`/api2?${ship_name}`)
+            .then(response=>response.json())
+            
+            
+            /*.then(data=>{
+                console.log(data)
+            })*/
+    })
+</script>
+
+</html>
