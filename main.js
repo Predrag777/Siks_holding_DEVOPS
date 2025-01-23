@@ -47,8 +47,7 @@ try{
             for(let i=0;i<rows.length;i++){
                 
                 if(rows[i].IP==req.ip){
-                    found=true
-                    
+                    found=true                    
                 }
             }
         })
@@ -65,8 +64,6 @@ try{
                 console.log("Dodata ip addresa")
             })
         }
-
-
 
 
         app.get("/api", (req, res)=>{
